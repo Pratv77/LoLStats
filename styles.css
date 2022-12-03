@@ -16,9 +16,7 @@ section {
 }
 
 /*
-
 LANDING PAGE 
-
 */
 
 .header {
@@ -77,9 +75,7 @@ LANDING PAGE
 }
 
 /*
-
 SEARCH BUTTON
-
 */
 
 #mysearch {
@@ -188,9 +184,7 @@ SEARCH BUTTON
 }
 
 /* 
-
 STARS ANIMATION 
-
 */
 
 #stars {
@@ -380,7 +374,7 @@ STARS ANIMATION
 #stars:after {
   content: "";
   position: absolute;
-  top: 2000px;
+  top: 500px;
   width: 1px;
   height: 1px;
   background: transparent;
@@ -624,7 +618,7 @@ STARS ANIMATION
 #stars2:after {
   content: "";
   position: absolute;
-  top: 2000px;
+  top: 500px;
   width: 2px;
   height: 2px;
   background: transparent;
@@ -717,7 +711,7 @@ STARS ANIMATION
 #stars3:after {
   content: "";
   position: absolute;
-  top: 2000px;
+  top: 500px;
   width: 3px;
   height: 3px;
   background: transparent;
