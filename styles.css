@@ -7,6 +7,10 @@
   font-family: "Roboto", sans-serif;
 }
 
+body {
+  overflow: hidden;
+}
+
 section {
   background: linear-gradient(to bottom, #4b1ed3, #180061);
 }
@@ -374,7 +378,7 @@ STARS ANIMATION
 }
 
 #stars:after {
-  content: '';
+  content: "";
   position: absolute;
   top: 2000px;
   width: 1px;
@@ -562,7 +566,7 @@ STARS ANIMATION
 #stars2 {
   width: 2px;
   height: 2px;
-  background: transparent; 
+  background: transparent;
   animation: animStar 100s linear infinite;
   box-shadow: 1448px 320px #fff, 1775px 1663px #fff, 332px 1364px #fff,
     878px 340px #fff, 569px 1832px #fff, 1422px 1684px #fff, 1946px 1907px #fff,
@@ -618,7 +622,7 @@ STARS ANIMATION
 }
 
 #stars2:after {
-  content: '';
+  content: "";
   position: absolute;
   top: 2000px;
   width: 2px;
@@ -711,7 +715,7 @@ STARS ANIMATION
 }
 
 #stars3:after {
-  content: '';
+  content: "";
   position: absolute;
   top: 2000px;
   width: 3px;
@@ -750,6 +754,6 @@ STARS ANIMATION
     transform: translateY(0px);
   }
   to {
-    transform: translateY(-2000px);
+    transform: translateY(-1000px);
   }
 }
