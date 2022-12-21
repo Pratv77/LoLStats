@@ -20,7 +20,7 @@ LANDING PAGE
 */
 
 .header {
-  position: absolute;
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -38,7 +38,6 @@ LANDING PAGE
   color: transparent;
   -webkit-text-stroke: 1px #ffffff;
   cursor: default;
-  
 }
 
 .title::before {
@@ -56,9 +55,10 @@ LANDING PAGE
   width: 100%;
 }
 
-.title--secondary {
-  font-size: 40px;
-  font-weight: 400;
+figure {
+  position: fixed;
+  right: 10%;
+  top: 10%;
 }
 
 .bg-img {
@@ -66,10 +66,7 @@ LANDING PAGE
   height: 100%;
   max-width: 850px;
   max-height: 850px;
-  position: fixed;
-  right: 10%;
-  top: 10%;
-  filter: opacity(0.5);
+  filter: opacity(0.6);
 }
 
 /*
