@@ -21,13 +21,11 @@ LANDING PAGE
 
 .header {
   position: absolute;
-  top: 40%;
-  left: 40%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  max-width: 1000px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  transform: translateY(110%);
+  margin: 120px;
 }
 
 #landing-page {
@@ -37,10 +35,10 @@ LANDING PAGE
 .title {
   position: relative;
   font-size: 110px;
-  text-transform: capitalize;
   color: transparent;
   -webkit-text-stroke: 1px #ffffff;
   cursor: default;
+  
 }
 
 .title::before {
