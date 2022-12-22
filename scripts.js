@@ -1,12 +1,10 @@
-function redirect(event) {
-
-  event.preventDefault();
-
-  let username = document.getElementById('mysearch');
-  console.log(username.value)
-  // let url = 'index2.html?q=' + username;
-
-  // window.location.href = url;
-
-
+function redirect() {
+  // Get the value of the input box
+  var input = document.getElementById("input").value;
+  
+  // Construct the URL with the input value as a query parameter
+  var url = "./index2.html" + input;
+  
+  // Redirect to the URL
+  window.location.href = url;
 }

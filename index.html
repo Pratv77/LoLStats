@@ -11,7 +11,6 @@
   </head>
   <body>
     <section id="landing-page">
-
       <!-- Background Stars Animation -->
       <div class="wrapper">
         <div id="stars"></div>
@@ -22,16 +21,15 @@
       <figure>
         <img class="bg-img" src="./assets/ahri-bg.png" alt="" />
       </figure>
-
-
       <!-- Header -->
       <header class="header">
         <h1 class="title">KeshStats</h1>
-        <!-- Search Button -->
-        <form action="" class="search-bar">
-          <input type="text" placeholder="Search Summoner" name="x" />
-          <button type="submit"><img src="./assets/search.png" /></button>
+        <!-- Search Bar -->
+        <form action="./index2.html" method="get" class="search-bar">
+          <input type="text" placeholder="Search Summoner..." id="input" name="input" maxlength="45"/>
+          <button type="submit" onclick="redirect()" ><img src="./assets/search.png" /></button>
         </form>
+        <!-- End of Header -->
       </header>
     </section>
   </body>
