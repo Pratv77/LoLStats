@@ -37,8 +37,9 @@ nav {
 }
 
 .nav__title {
-  font-size: 40px;
-
+  font-size: 60px;
+  color: transparent;
+  -webkit-text-stroke: 0.5px #ffffff;
 }
 
 .nav__link--list {
