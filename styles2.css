@@ -24,6 +24,10 @@ section {
   height: 50px;
 }
 
+.title--link {
+  text-decoration: none;
+}
+
 li {
   list-style-type: none;
 }
