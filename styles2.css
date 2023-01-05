@@ -12,6 +12,10 @@ section {
   min-height: 100vh;
 }
 
+h2, h3, h4, p {
+  color: white;
+}
+
 /* 
 
   NAV BAR
