@@ -62,13 +62,19 @@ function checkIfRanked(data) {
 }
 
 function displayRankedSD(data) {
-  
+  const { tier, rank, leaguePoints, wins, losses} = data;
+  document.querySelector('.rankSD').innerHTML = "Rank: " + tier + " " + rank + " " + leaguePoints + " LP";
+  document.querySelector('.winrateSD').innerHTML = "WR: " + (wins / (wins + losses) * 100).toFixed(2) + "%";
+  document.querySelector('.win__lossSD').innerHTML = wins + " W " + losses + " L ";
 }
 
 function displayRankedF(data) {
-
+  const { tier, rank, leaguePoints, wins, losses} = data;
+  document.querySelector('.rankF').innerHTML = "Rank: " + tier + " " + rank + " " + leaguePoints + " LP";
+  document.querySelector('.winrateF').innerHTML = "WR: " + (wins / (wins + losses) * 100).toFixed(2) + "%";
+  document.querySelector('.win__lossF').innerHTML = wins + " W " + losses + " L ";
 }
 
 function unranked() {
-
+  
 }
