@@ -9,21 +9,6 @@ let summonerId;
 
 fetchLeague(username);
 
-var Map = {};
-Map["IRON"] = 1;
-Map["BRONZE"] = 2;
-Map["SILVER"] = 3;
-Map["GOLD"] = 4;
-Map["PLATINUM"] = 5;
-Map["DIAMOND"] = 6;
-Map["MASTERS"] = 7;
-Map["GRANDMASTER"] = 8;
-Map["CHALLENGER"] = 9;
-Map["IV"] = 10;
-Map["III"] = 11;
-Map["II"] = 12;
-Map["I"] = 13;
-
 // 1st API call
 async function fetchLeague(username) {
   const response = await fetch(
@@ -54,51 +39,36 @@ async function rankedStats(accountId) {
   checkIfRanked(data);
 }
 
-// Check if Ranked SoloDuo or Flex
+// Check if player is ranked
 function checkIfRanked(data) {
-  checkHigherRank(data);
-
-  // for (let i = 0; i < Object.keys(data).length; i++) {
-  //   if (data[i].queueType === "RANKED_SOLO_5x5") {
-  //     displayRankedSD(data);
-  //   } else if (data[i].queueType === "RANKED_FLEX_SR") {
-  //     displayRankedFl(data);
-  //   }
-  // }
-}
-
-function checkHigherRank(data) {
-  let higherRank = "";
-
-  if (Map[data[0].tier] > Map[data[1].tier]) {
-    higherRank = data[0].queueType;
-  } else if (Map[data[0].tier] < Map[data[1].tier]) {
-    higherRank = data[1].queueType;
-  } else if (Map[data[0].tier] == Map[data[1].tier]) {
-    if (Map[data[0].rank] > Map[data[1].rank]) {
-      higherRank = data[0].queueType;
-    } else if (Map[data[0].rank] == Map[data[1].rank]) {
-      if (data[0].leaguePoints > data[1].leaguePoints) {
-        higherRank = data[0].queueType;
-      } else {
-        higherRank = data[1].queueType;
-      }
+  console.log(data);
+  if (Object.keys(data).length == 0) {
+    unranked();
+  } else if (Object.keys(data).length == 1) {
+    if (data[0].queueType === "RANKED_FLEX_SR") {
+      displayRankedF(data[0]);
     } else {
-      higherRank = data[1].queueType;
+      displayRankedSD(data[0]);
     }
-  }
-
-  if (higherRank === "RANKED_FLEX_SR") {
-    displayRankedFl(data);
   } else {
-    displayRankedSD(data);
+    if (data[0].queueType === "RANKED_FLEX_SR") {
+      displayRankedF(data[0]);
+      displayRankedSD(data[1]);
+    } else {
+      displayRankedF(data[1]);
+      displayRankedSD(data[0]);
+    }
   }
 }
 
 function displayRankedSD(data) {
-  console.log("solo duo");
+  
 }
 
-function displayRankedFl(data) {
-  console.log("flex");
+function displayRankedF(data) {
+
+}
+
+function unranked() {
+
 }
