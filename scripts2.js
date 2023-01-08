@@ -1,4 +1,4 @@
-const apiKey = "RGAPI-c974402f-6b95-4071-90d1-d39cc22d9e2b";
+const apiKey = "RGAPI-ab01faeb-8e19-46b7-9828-b277964914eb";
 
 // Get player's username from search
 const urlValue = window.location.search;
@@ -6,14 +6,19 @@ const urlParams = new URLSearchParams(urlValue);
 
 const username = urlParams.get("username");
 let summonerId;
+let response;
 
 fetchLeague(username);
 
 // 1st API call
 async function fetchLeague(username) {
-  const response = await fetch(
-    `https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${username}?api_key=${apiKey}`
-  );
+  try {
+    response = await fetch(
+      `https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${username}?api_key=${apiKey}`
+    );
+  } catch {
+    noData();
+  }
   const data = await response.json();
   displayData(data);
 }
@@ -62,21 +67,32 @@ function checkIfRanked(data) {
 }
 
 function displayRankedSD(data) {
-  const { tier, rank, leaguePoints, wins, losses} = data;
-  document.querySelector('.SD').innerHTML = "Solo Duo"
-  document.querySelector('.rankSD').innerHTML = "Rank: " + tier + " " + rank + " " + leaguePoints + " LP";
-  document.querySelector('.winrateSD').innerHTML = "WR: " + (wins / (wins + losses) * 100).toFixed(2) + "%";
-  document.querySelector('.win__lossSD').innerHTML = wins + " W " + losses + " L ";
+  const { tier, rank, leaguePoints, wins, losses } = data;
+  document.querySelector(".SD").innerHTML = "Solo Duo";
+  document.querySelector(".rankSD").innerHTML =
+    "Rank: " + tier + " " + rank + " " + leaguePoints + " LP";
+  document.querySelector(".winrateSD").innerHTML =
+    "WR: " + ((wins / (wins + losses)) * 100).toFixed(2) + "%";
+  document.querySelector(".win__lossSD").innerHTML =
+    wins + " W " + losses + " L ";
 }
 
 function displayRankedF(data) {
-  const { tier, rank, leaguePoints, wins, losses} = data;
-  document.querySelector('.F').innerHTML = "Flex"
-  document.querySelector('.rankF').innerHTML = "Rank: " + tier + " " + rank + " " + leaguePoints + " LP";
-  document.querySelector('.winrateF').innerHTML = "WR: " + (wins / (wins + losses) * 100).toFixed(2) + "%";
-  document.querySelector('.win__lossF').innerHTML = wins + " W " + losses + " L ";
+  const { tier, rank, leaguePoints, wins, losses } = data;
+  document.querySelector(".F").innerHTML = "Flex";
+  document.querySelector(".rankF").innerHTML =
+    "Rank: " + tier + " " + rank + " " + leaguePoints + " LP";
+  document.querySelector(".winrateF").innerHTML =
+    "WR: " + ((wins / (wins + losses)) * 100).toFixed(2) + "%";
+  document.querySelector(".win__lossF").innerHTML =
+    wins + " W " + losses + " L ";
 }
 
 function unranked() {
-  document.querySelector('.SD').innerHTML = "Unranked"
+  document.querySelector(".SD").innerHTML = "Unranked";
+}
+
+function noData() {
+  document.querySelector(".temp").innerHTML =
+    "API Key needs to be regenerated :(";
 }
