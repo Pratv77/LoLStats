@@ -1,4 +1,4 @@
-const apiKey = "RGAPI-ab01faeb-8e19-46b7-9828-b277964914eb";
+const apiKey = "RGAPI-4945877e-0a94-4c0f-8879-1763bc6ab757";
 
 // Get player's username from search
 const urlValue = window.location.search;
@@ -7,6 +7,7 @@ const urlParams = new URLSearchParams(urlValue);
 const username = urlParams.get("username");
 let summonerId;
 let response;
+let playerPuuid;
 
 fetchLeague(username);
 
@@ -19,16 +20,16 @@ async function fetchLeague(username) {
   } catch {
     noData();
   }
-
   const data = await response.json();
-
   displayData(data);
 }
 
 function displayData(data) {
-  const { name, profileIconId, summonerLevel, id } = data;
+  const { name, profileIconId, summonerLevel, id, puuid } = data;
   summonerId = id;
+  playerPuuid = puuid;
   rankedStats(summonerId);
+  matchHistory(puuid);
 
   document.querySelector(".name").innerHTML = name;
   document.querySelector(
@@ -48,7 +49,6 @@ async function rankedStats(accountId) {
 
 // Check if player is ranked
 function checkIfRanked(data) {
-  console.log(data);
   if (Object.keys(data).length == 0) {
     unranked();
   } else if (Object.keys(data).length == 1) {
@@ -104,3 +104,51 @@ function noData() {
   document.querySelector(".temp").innerHTML =
     "API Key needs to be regenerated :(";
 }
+
+// Get match history
+
+async function matchHistory(puuid) {
+  const response = await fetch(
+    `https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=20&api_key=${apiKey}`
+  );
+  const data = await response.json();
+
+  const response2 = await fetch(
+    `https://americas.api.riotgames.com/lol/match/v5/matches/${data[0]}?api_key=${apiKey}`
+  );
+  const data2 = await response2.json();
+  getPlayerPuuid(data2);
+}
+
+function getPlayerPuuid(data) {
+  let playerId;
+  let arr = data.metadata.participants;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === playerPuuid) {
+      playerId = arr[i];
+      break;
+    }
+  }
+
+
+
+
+
+
+}
+
+
+// gameMode = data2.info.gameMode
+// champion name = data2.info.participants[7].championName
+// assists = data2.info.participants[7].assists
+// kills = data2.info.participants[7].kills
+// deaths = data2.info.participants[7].deaths
+// items = data2.info.participants[7].item0
+// summoner1 id = data2.info.participants[7].summoner1Id
+// summoner1 id = data2.info.participants[7].summoner2Id
+// win/loss = data2.info.participants[7].win
+// time played in seconds = data2.info.participants[7].timePlayed
+
+
+// get all stats based off previous search
+// display stats
