@@ -133,3 +133,26 @@ nav {
   max-width: 80px;
   max-height: 80px;
 }
+
+/* 
+
+  MATCH HISTORY 
+
+*/
+
+.column1, .column2, .column3 {
+  flex: 33.33%;
+  height: 80px;
+  padding: 10px;
+  margin: 5px;
+  background-color: #cccccc;
+  text-align: center;
+}
+.container {
+   display: flex;
+}	
+
+.logo {
+  width: 50px;
+  height: 50px;
+}

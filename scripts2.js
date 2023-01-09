@@ -1,4 +1,4 @@
-const apiKey = "RGAPI-4945877e-0a94-4c0f-8879-1763bc6ab757";
+const apiKey = "RGAPI-6b5811ad-95cd-4022-b717-36cb3d0e3f56";
 
 // Get player's username from search
 const urlValue = window.location.search;
@@ -114,9 +114,10 @@ async function matchHistory(puuid) {
   const data = await response.json();
 
   const response2 = await fetch(
-    `https://americas.api.riotgames.com/lol/match/v5/matches/${data[0]}?api_key=${apiKey}`
+    `https://americas.api.riotgames.com/lol/match/v5/matches/${data[0]}?api_key=${apiKey}` // can loop this
   );
   const data2 = await response2.json();
+  console.log(data2)
   getPlayerPuuid(data2);
 }
 
@@ -129,10 +130,6 @@ function getPlayerPuuid(data) {
       break;
     }
   }
-
-
-
-
 
 
 }
@@ -152,3 +149,6 @@ function getPlayerPuuid(data) {
 
 // get all stats based off previous search
 // display stats
+
+// champ profile pic = http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${Zed}_0.jpg
+// summoner spell = https://raw.githubusercontent.com/InFinity54/LoL_DDragon/master/extras/summonerspells/${summoner_spell_id}.png
