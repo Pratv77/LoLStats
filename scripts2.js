@@ -19,7 +19,9 @@ async function fetchLeague(username) {
   } catch {
     noData();
   }
+
   const data = await response.json();
+
   displayData(data);
 }
 
@@ -68,6 +70,9 @@ function checkIfRanked(data) {
 
 function displayRankedSD(data) {
   const { tier, rank, leaguePoints, wins, losses } = data;
+  document.querySelector(
+    ".ranked-img"
+  ).src = `./assets/ranked-emblems/${tier}.png`;
   document.querySelector(".SD").innerHTML = "Solo Duo";
   document.querySelector(".rankSD").innerHTML =
     "Rank: " + tier + " " + rank + " " + leaguePoints + " LP";
@@ -79,6 +84,9 @@ function displayRankedSD(data) {
 
 function displayRankedF(data) {
   const { tier, rank, leaguePoints, wins, losses } = data;
+  document.querySelector(
+    ".ranked-img2"
+  ).src = `./assets/ranked-emblems/${tier}.png`;
   document.querySelector(".F").innerHTML = "Flex";
   document.querySelector(".rankF").innerHTML =
     "Rank: " + tier + " " + rank + " " + leaguePoints + " LP";
