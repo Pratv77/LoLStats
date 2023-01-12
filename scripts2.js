@@ -8,6 +8,7 @@ const username = urlParams.get("username");
 let summonerId;
 let response;
 let playerPuuid;
+const user = 13;
 
 fetchLeague(username);
 
