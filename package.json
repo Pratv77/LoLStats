@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "dotenv": "^16.0.3",
     "shieldbow": "^1.6.0"
   }
 }

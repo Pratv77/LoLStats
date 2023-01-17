@@ -1,4 +1,4 @@
-const apiKey = "RGAPI-6b5811ad-95cd-4022-b717-36cb3d0e3f56";
+const apiKey = "RGAPI-f83dd452-a74d-4320-aa71-501b288e90d7";
 
 // Get player's username from search
 const urlValue = window.location.search;
@@ -118,7 +118,6 @@ async function matchHistory(puuid) {
     `https://americas.api.riotgames.com/lol/match/v5/matches/${data[0]}?api_key=${apiKey}` // can loop this
   );
   const data2 = await response2.json();
-  console.log(data2)
   getPlayerPuuid(data2);
 }
 
