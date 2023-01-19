@@ -140,19 +140,120 @@ nav {
 
 */
 
-.column1, .column2, .column3 {
-  flex: 33.33%;
-  height: 80px;
+.column1,
+.column2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: auto;
   padding: 10px;
   margin: 5px;
-  background-color: #cccccc;
   text-align: center;
 }
+
+.champion--spells--wrapper {
+  display: flex;
+}
+
 .container {
-   display: flex;
-}	
+  display: flex;
+  border: 2px solid black;
+  width: 725px;
+  height: 125px;
+  border-radius: 10px;
+  background-color: #150061;
+}
 
 .logo {
   width: 50px;
   height: 50px;
+  margin-right: 10px;
+}
+
+.summoner_spell1,
+.summoner_spell2 {
+  width: 23px;
+  height: 23px;
+}
+
+.item1,
+.item2,
+.item3,
+.item4,
+.item5,
+.item6 {
+  width: 30px;
+  height: 30px;
+}
+
+.kda,
+.time-played {
+  color: white;
+}
+
+.kda__time--played-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+.team1p1,
+.team1p2,
+.team1p3,
+.team1p4,
+.team1p5,
+.team2p1,
+.team2p2,
+.team2p3,
+.team2p4,
+.team2p5 {
+  width: 20px;
+  height: 20px;
+}
+
+.team1--wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-right: 50px;
+}
+
+.teamname--wrapper1,
+.teamname--wrapper2,
+.teamname--wrapper3,
+.teamname--wrapper4,
+.teamname--wrapper5,
+.teamname--wrapper6,
+.teamname--wrapper7,
+.teamname--wrapper8,
+.teamname--wrapper9,
+.teamname--wrapper10 {
+  display: flex;
+  position: sticky;
+}
+
+.name {
+  margin-left: 4px;
+}
+
+.column3 {
+  display: flex;
+  align-items: center;
+  width: auto;
+  margin-left: 20px;
+}
+
+.rune1,
+.rune2 {
+  width: 20px;
+  height: 20px;
+}
+
+.runes--wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.container--holder {
+  display: flex;
+  flex-direction: column;
 }

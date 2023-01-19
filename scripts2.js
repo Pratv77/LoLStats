@@ -8,7 +8,38 @@ const username = urlParams.get("username");
 let summonerId;
 let response;
 let playerPuuid;
-const user = 13;
+let arr = [];
+let runesMap = {
+  // Used mapping since I couldn't find a proper place to call each rune using the perk ID :(
+  // secondary runes
+  8100: `https://github.com/Pratv77/LoL_DDragon/blob/master/img/perk-images/Styles/7200_Domination.png?raw=true`,
+  8000: `https://github.com/Pratv77/LoL_DDragon/blob/master/img/perk-images/Styles/7201_Precision.png?raw=true`,
+  8200: `https://github.com/Pratv77/LoL_DDragon/blob/master/img/perk-images/Styles/7202_Sorcery.png?raw=true`,
+  8300: `https://github.com/Pratv77/LoL_DDragon/blob/master/img/perk-images/Styles/7203_Whimsy.png?raw=true`,
+  8400: `https://github.com/Pratv77/LoL_DDragon/blob/master/img/perk-images/Styles/7204_Resolve.png?raw=true`,
+  // domination runes
+  8112: `https://github.com/Pratv77/LoL_DDragon/blob/master/img/perk-images/Styles/Domination/Electrocute/Electrocute.png?raw=true`,
+  8124: `https://github.com/Pratv77/LoL_DDragon/blob/master/img/perk-images/Styles/Domination/Predator/Predator.png?raw=true`,
+  8128: `https://github.com/Pratv77/LoL_DDragon/blob/master/img/perk-images/Styles/Domination/DarkHarvest/DarkHarvest.png?raw=true`,
+  9923: `https://github.com/Pratv77/LoL_DDragon/blob/master/img/perk-images/Styles/Domination/HailOfBlades/HailOfBlades.png?raw=true`,
+  // inspiration runes
+  8351: `https://github.com/Pratv77/LoL_DDragon/blob/master/img/perk-images/Styles/Inspiration/GlacialAugment/GlacialAugment.png?raw=true`,
+  8360: `https://github.com/Pratv77/LoL_DDragon/blob/master/img/perk-images/Styles/Inspiration/UnsealedSpellbook/UnsealedSpellbook.png?raw=true`,
+  8369: `https://github.com/Pratv77/LoL_DDragon/blob/master/img/perk-images/Styles/Inspiration/FirstStrike/FirstStrike.png?raw=true`,
+  // precision runes
+  8005: `https://github.com/Pratv77/LoL_DDragon/blob/master/img/perk-images/Styles/Precision/PressTheAttack/PressTheAttack.png?raw=true`,
+  8008: `https://github.com/Pratv77/LoL_DDragon/blob/master/img/perk-images/Styles/Precision/LethalTempo/LethalTempoTemp.png?raw=true`,
+  8021: `https://github.com/Pratv77/LoL_DDragon/blob/master/img/perk-images/Styles/Precision/FleetFootwork/FleetFootwork.png?raw=true`,
+  8010: `https://github.com/Pratv77/LoL_DDragon/blob/master/img/perk-images/Styles/Precision/Conqueror/Conqueror.png?raw=true`,
+  // resolve runes
+  8437: `https://github.com/Pratv77/LoL_DDragon/blob/master/img/perk-images/Styles/Resolve/GraspOfTheUndying/GraspOfTheUndying.png?raw=true`,
+  8439: `https://github.com/Pratv77/LoL_DDragon/blob/master/img/perk-images/Styles/Resolve/VeteranAftershock/VeteranAftershock.png?raw=true`,
+  8465: `https://github.com/Pratv77/LoL_DDragon/blob/master/img/perk-images/Styles/Resolve/Guardian/Guardian.png?raw=true`,
+  // sorcery runes
+  8214: `https://github.com/Pratv77/LoL_DDragon/blob/master/img/perk-images/Styles/Sorcery/SummonAery/SummonAery.png?raw=true`,
+  8229: `https://github.com/Pratv77/LoL_DDragon/blob/master/img/perk-images/Styles/Sorcery/ArcaneComet/ArcaneComet.png?raw=true`,
+  8230: `https://github.com/Pratv77/LoL_DDragon/blob/master/img/perk-images/Styles/Sorcery/PhaseRush/PhaseRush.png?raw=true`,
+};
 
 fetchLeague(username);
 
@@ -114,38 +145,376 @@ async function matchHistory(puuid) {
   );
   const data = await response.json();
 
-  const response2 = await fetch(
-    `https://americas.api.riotgames.com/lol/match/v5/matches/${data[0]}?api_key=${apiKey}` // can loop this
-  );
-  const data2 = await response2.json();
-  getPlayerPuuid(data2);
-}
+  let data2;
 
-function getPlayerPuuid(data) {
-  let playerId;
-  let arr = data.metadata.participants;
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === playerPuuid) {
-      playerId = arr[i];
-      break;
-    }
+  for (i = 0; i < 5; i++) {
+    let response2 = await fetch(
+      `https://americas.api.riotgames.com/lol/match/v5/matches/${data[i]}?api_key=${apiKey}` // loops 4 times and appends to array for recent 4 matches
+    );
+    data2 = await response2.json();
+    arr.push(data2);
   }
-
-
+  setData(arr);
 }
 
+function setData(dataArray) {
+  let playerId; //used to compare to match participants to find which participant is the user
+  let playerNum; //used to get user's stats only from metadata
 
-// gameMode = data2.info.gameMode
-// champion name = data2.info.participants[7].championName
-// assists = data2.info.participants[7].assists
-// kills = data2.info.participants[7].kills
-// deaths = data2.info.participants[7].deaths
-// items = data2.info.participants[7].item0
-// summoner1 id = data2.info.participants[7].summoner1Id
-// summoner1 id = data2.info.participants[7].summoner2Id
-// win/loss = data2.info.participants[7].win
-// time played in seconds = data2.info.participants[7].timePlayed
+  for (i = 0; i < 5; i++) {
+    let matchData = dataArray[i]; //put dataArray[i] in a var just for simplicity
+    let arr = matchData.metadata.participants;
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] === playerPuuid) {
+        playerId = arr[i];
+        playerNum = i;
+        break;
+      }
+    }
+    // Recreate match history container here, gonna be lengthy
 
+    var matchHistory = document.getElementById("match-history");
+
+    let container_holder = document.createElement("div");
+    container_holder.classList.add("container--holder");
+    matchHistory.appendChild(container_holder);
+
+    let container = document.createElement("div");
+    container.classList.add("container");
+    container_holder.appendChild(container);
+
+    let column1 = document.createElement("div");
+    column1.classList.add("column1");
+    container.appendChild(column1);
+
+    let champion__spells__wrapper = document.createElement("div");
+    champion__spells__wrapper.classList.add("champion--spells-wrapper");
+    column1.appendChild(champion__spells__wrapper);
+
+    let champlogo = document.createElement("div");
+    champlogo.classList.add("champ__logo");
+    champion__spells__wrapper.appendChild(champlogo);
+
+    let logo = document.createElement("img");
+    logo.setAttribute("class", "logo");
+    logo.setAttribute(
+      "src",
+      `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[playerNum].championName}_0.jpg`
+    );
+    champlogo.appendChild(logo);
+
+    let summonerwrapper = document.createElement("div");
+    summonerwrapper.classList.add("summoner--wrapper");
+    champion__spells__wrapper.appendChild(summonerwrapper);
+
+    let ss1 = document.createElement("div");
+    ss1.classList.add("SS1");
+    summonerwrapper.appendChild(ss1);
+
+    let summonerspell1 = document.createElement("img");
+    summonerspell1.setAttribute("class", "summoner_spell1");
+    summonerspell1.setAttribute(
+      "src",
+      `https://raw.githubusercontent.com/InFinity54/LoL_DDragon/master/extras/summonerspells/${matchData.info.participants[playerNum].summoner1Id}.png`
+    );
+    ss1.appendChild(summonerspell1);
+
+    let ss2 = document.createElement("div");
+    ss2.classList.add("SS2");
+    summonerwrapper.appendChild(ss2);
+
+    let summonerspell2 = document.createElement("img");
+    summonerspell2.setAttribute("class", "summoner_spell2");
+    summonerspell2.setAttribute(
+      "src",
+      `https://raw.githubusercontent.com/InFinity54/LoL_DDragon/master/extras/summonerspells/${matchData.info.participants[playerNum].summoner2Id}.png`
+    );
+    ss2.appendChild(summonerspell2);
+
+    let runeswrapper = document.createElement("div");
+    runeswrapper.classList.add("runes--wrapper");
+    summonerwrapper.appendChild(runeswrapper);
+
+    let r1 = document.createElement("div");
+    r1.classList.add("R1");
+    runeswrapper.appendChild(r1);
+
+    let rune1 = document.createElement("img");
+    rune1.setAttribute("class", "rune1");
+    rune1.setAttribute(
+      "src",
+      runesMap[
+        matchData.info.participants[playerNum].perks.styles[0].selections[0]
+          .perk
+      ]
+    );
+    r1.appendChild(rune1);
+
+    let r2 = document.createElement("div");
+    r2.classList.add("R2");
+    runeswrapper.appendChild(r2);
+
+    let rune2 = document.createElement("img");
+    rune2.setAttribute("class", "rune2");
+    rune2.setAttribute(
+      "src",
+      runesMap[matchData.info.participants[playerNum].perks.styles[1].style]
+    );
+    r2.appendChild(rune2);
+
+    let gamemode = document.createElement("div");
+    gamemode.classList.add("gameMode");
+    champion__spells__wrapper.appendChild(gamemode);
+
+    let gamemode1 = document.createElement("p");
+    gamemode1.classList.add("gamemode1");
+    gamemode1.innerHTML = "Ranked Flex"; // Gotta fix this, not sure how still
+    gamemode.appendChild(gamemode1);
+
+    let column2 = document.createElement("div");
+    column2.classList.add("column2");
+    container.appendChild(column2);
+
+    let items = document.createElement("div");
+    items.classList.add("items");
+    column2.appendChild(items);
+
+    let item1 = document.createElement("img");
+    item1.setAttribute("class", "item2");
+    item1.setAttribute(
+      "src",
+      `http://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${matchData.info.participants[playerNum].item0}.png`
+    );
+    items.appendChild(item1);
+
+    let item2 = document.createElement("img");
+    item2.setAttribute("class", "item1");
+    item2.setAttribute(
+      "src",
+      `http://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${matchData.info.participants[playerNum].item1}.png`
+    );
+    items.appendChild(item2);
+
+    let item3 = document.createElement("img");
+    item3.setAttribute("class", "item1");
+    item3.setAttribute(
+      "src",
+      `http://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${matchData.info.participants[playerNum].item2}.png`
+    );
+    items.appendChild(item3);
+
+    let item4 = document.createElement("img");
+    item4.setAttribute("class", "item1");
+    item4.setAttribute(
+      "src",
+      `http://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${matchData.info.participants[playerNum].item3}.png`
+    );
+    items.appendChild(item4);
+
+    let item5 = document.createElement("img");
+    item5.setAttribute("class", "item1");
+    item5.setAttribute(
+      "src",
+      `http://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${matchData.info.participants[playerNum].item4}.png`
+    );
+    items.appendChild(item5);
+
+    let item6 = document.createElement("img");
+    item6.setAttribute("class", "item1");
+    item6.setAttribute(
+      "src",
+      `http://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${matchData.info.participants[playerNum].item5}.png`
+    );
+    items.appendChild(item6);
+
+    let kdatimeplayedwrapper = document.createElement("div");
+    kdatimeplayedwrapper.classList.add("kda__time--played-wrapper");
+    column2.appendChild(kdatimeplayedwrapper);
+
+    let kda = document.createElement("div");
+    kda.classList.add("kda");
+    kda.innerHTML =
+      matchData.info.participants[playerNum].kills +
+      " / " +
+      matchData.info.participants[playerNum].deaths +
+      " / " +
+      matchData.info.participants[playerNum].assists;
+    kdatimeplayedwrapper.appendChild(kda);
+
+    let timeplayed = document.createElement("div");
+    timeplayed.classList.add("time-played");
+    let timeInSeconds = matchData.info.participants[playerNum].timePlayed;
+    let minutes = Math.floor(timeInSeconds / 60);
+    let seconds = (timeInSeconds % 60).toString().padStart(2, "0");
+    timeplayed.innerHTML = `${minutes}m ${seconds}s`;
+    kdatimeplayedwrapper.appendChild(timeplayed);
+
+    let column3 = document.createElement("div");
+    column3.classList.add("column3");
+    container.appendChild(column3);
+
+    let team1wrapper = document.createElement("div");
+    team1wrapper.classList.add("team1--wrapper");
+    column3.appendChild(team1wrapper);
+
+    let teamnamewrapper1 = document.createElement("div");
+    teamnamewrapper1.classList.add("teamname--wrapper1");
+    team1wrapper.appendChild(teamnamewrapper1);
+
+    let team1p1 = document.createElement("img");
+    team1p1.setAttribute("class", "team1p1");
+    team1p1.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[0].championName}_0.jpg`);
+    teamnamewrapper1.appendChild(team1p1);
+
+    let team1name1 = document.createElement("h5");
+    team1name1.classList.add("team1name1", "name");
+    team1name1.innerHTML = matchData.info.participants[0].summonerName;
+    teamnamewrapper1.appendChild(team1name1)
+
+    let teamnamewrapper2 = document.createElement("div");
+    teamnamewrapper2.classList.add("teamname--wrapper2");
+    team1wrapper.appendChild(teamnamewrapper2);
+
+    let team1p2 = document.createElement("img");
+    team1p2.setAttribute("class", "team1p2");
+    team1p2.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[1].championName}_0.jpg`);
+    teamnamewrapper2.appendChild(team1p2);
+
+    let team1name2 = document.createElement("h5");
+    team1name2.classList.add("team1name2", "name");
+    team1name2.innerHTML = matchData.info.participants[1].summonerName;
+    teamnamewrapper2.appendChild(team1name2)
+
+    let teamnamewrapper3 = document.createElement("div");
+    teamnamewrapper3.classList.add("teamname--wrapper3");
+    team1wrapper.appendChild(teamnamewrapper3);
+
+    let team1p3 = document.createElement("img");
+    team1p3.setAttribute("class", "team1p3");
+    team1p3.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[2].championName}_0.jpg`);
+    teamnamewrapper3.appendChild(team1p3);
+
+    let team1name3 = document.createElement("h5");
+    team1name3.classList.add("team1name3", "name");
+    team1name3.innerHTML = matchData.info.participants[2].summonerName;
+    teamnamewrapper3.appendChild(team1name3)
+
+    let teamnamewrapper4 = document.createElement("div");
+    teamnamewrapper4.classList.add("teamname--wrapper4");
+    team1wrapper.appendChild(teamnamewrapper4);
+
+    let team1p4 = document.createElement("img");
+    team1p4.setAttribute("class", "team1p4");
+    team1p4.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[3].championName}_0.jpg`);
+    teamnamewrapper4.appendChild(team1p4);
+
+    let team1name4 = document.createElement("h5");
+    team1name4.classList.add("team1name4", "name");
+    team1name4.innerHTML = matchData.info.participants[3].summonerName;
+    teamnamewrapper4.appendChild(team1name4)
+
+    let teamnamewrapper5 = document.createElement("div");
+    teamnamewrapper5.classList.add("teamname--wrapper5");
+    team1wrapper.appendChild(teamnamewrapper5);
+
+    let team1p5 = document.createElement("img");
+    team1p5.setAttribute("class", "team1p5");
+    team1p5.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[4].championName}_0.jpg`);
+    teamnamewrapper5.appendChild(team1p5);
+
+    let team1name5 = document.createElement("h5");
+    team1name5.classList.add("team1name5", "name");
+    team1name5.innerHTML = matchData.info.participants[4].summonerName;
+    teamnamewrapper5.appendChild(team1name5)
+
+    let team2wrapper = document.createElement("div");
+    team2wrapper.classList.add("team2--wrapper");
+    column3.appendChild(team2wrapper);
+
+    let teamnamewrapper6 = document.createElement("div");
+    teamnamewrapper6.classList.add("teamname--wrapper6");
+    team2wrapper.appendChild(teamnamewrapper6);
+
+    let team2p1 = document.createElement("img");
+    team2p1.setAttribute("class", "team2p1");
+    team2p1.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[5].championName}_0.jpg`);
+    teamnamewrapper6.appendChild(team2p1);
+
+    let team2name1 = document.createElement("h5");
+    team2name1.classList.add("team2name1", "name");
+    team2name1.innerHTML = matchData.info.participants[5].summonerName;
+    teamnamewrapper6.appendChild(team2name1);
+
+    let teamnamewrapper7 = document.createElement("div");
+    teamnamewrapper7.classList.add("teamname--wrapper7");
+    team2wrapper.appendChild(teamnamewrapper7);
+
+    let team2p2 = document.createElement("img");
+    team2p2.setAttribute("class", "team2p2");
+    team2p2.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[6].championName}_0.jpg`);
+    teamnamewrapper7.appendChild(team2p2);
+
+    let team2name2 = document.createElement("h5");
+    team2name2.classList.add("team2name2", "name");
+    team2name2.innerHTML = matchData.info.participants[6].summonerName;
+    teamnamewrapper7.appendChild(team2name2);
+
+    let teamnamewrapper8 = document.createElement("div");
+    teamnamewrapper8.classList.add("teamname--wrapper8");
+    team2wrapper.appendChild(teamnamewrapper8);
+
+    let team2p3 = document.createElement("img");
+    team2p3.setAttribute("class", "team2p3");
+    team2p3.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[7].championName}_0.jpg`);
+    teamnamewrapper8.appendChild(team2p3);
+
+    let team2name3 = document.createElement("h5");
+    team2name3.classList.add("team2name3", "name");
+    team2name3.innerHTML = matchData.info.participants[7].summonerName;
+    teamnamewrapper8.appendChild(team2name3);
+
+    let teamnamewrapper9 = document.createElement("div");
+    teamnamewrapper9.classList.add("teamname--wrapper9");
+    team2wrapper.appendChild(teamnamewrapper9);
+
+    let team2p4 = document.createElement("img");
+    team2p4.setAttribute("class", "team2p4");
+    team2p4.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[8].championName}_0.jpg`);
+    teamnamewrapper9.appendChild(team2p4);
+
+    let team2name4 = document.createElement("h5");
+    team2name4.classList.add("team2name4", "name");
+    team2name4.innerHTML = matchData.info.participants[8].summonerName;
+    teamnamewrapper9.appendChild(team2name4);
+
+    let teamnamewrapper10 = document.createElement("div");
+    teamnamewrapper10.classList.add("teamname--wrapper10");
+    team2wrapper.appendChild(teamnamewrapper10);
+
+    let team2p5 = document.createElement("img");
+    team2p5.setAttribute("class", "team2p5");
+    team2p5.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[9].championName}_0.jpg`);
+    teamnamewrapper10.appendChild(team2p5);
+
+    let team2name5 = document.createElement("h5");
+    team2name5.classList.add("team2name5", "name");
+    team2name5.innerHTML = matchData.info.participants[9].summonerName;
+    teamnamewrapper10.appendChild(team2name5);
+  }
+}
+
+// First Rune = matchData.info.participants[playerNum].perks.styles[0].selections[0].perk  ex 8112 == electrocute
+// Second Rune = matchData.info.participants[playerNum].perks.styles[1].style  ex 8200 == sorcery
+// gameMode = matchData.info.gameMode
+// champion name = matchData.info.participants[playerNum].championName
+// assists = matchData.info.participants[playerNum].assists
+// kills = matchData.info.participants[playerNum].kills
+// deaths = matchData.info.participants[playerNum].deaths
+// items = matchData.info.participants[playerNum].item0
+// summoner1 id = matchData.info.participants[playerNum].summoner1Id
+// summoner2 id = matchData.info.participants[playerNum].summoner2Id
+// win/loss = matchData.info.participants[playerNum].win
+// time played in seconds = matchData.info.participants[playerNum].timePlayed
 
 // get all stats based off previous search
 // display stats

@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "dotenv": "^16.0.3",
+    "moment": "^2.29.4",
     "shieldbow": "^1.6.0"
   }
 }
