@@ -140,7 +140,6 @@ nav {
 
 */
 
-.column1,
 .column2 {
   display: flex;
   flex-direction: column;
@@ -151,23 +150,39 @@ nav {
   text-align: center;
 }
 
-.champion--spells--wrapper {
+.column1 {
   display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: auto;
+  padding: 10px;
+  margin: 5px;
+  text-align: center;
+}
+
+.champion--spells-wrapper {
+  display: flex;
+  flex-direction: row;
 }
 
 .container {
   display: flex;
   border: 2px solid black;
-  width: 725px;
+  width: 780px;
   height: 125px;
   border-radius: 10px;
   background-color: #150061;
+  margin-bottom: 5px;
 }
 
 .logo {
   width: 50px;
   height: 50px;
   margin-right: 10px;
+}
+
+.summoner--wrapper {
+  display: flex;
 }
 
 .summoner_spell1,
@@ -184,6 +199,7 @@ nav {
 .item6 {
   width: 30px;
   height: 30px;
+  margin-left: 5px;
 }
 
 .kda,
@@ -256,4 +272,8 @@ nav {
 .container--holder {
   display: flex;
   flex-direction: column;
+}
+
+.img-curve {
+  border-radius: 10px;
 }

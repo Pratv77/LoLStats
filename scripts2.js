@@ -207,9 +207,13 @@ function setData(dataArray) {
     summonerwrapper.classList.add("summoner--wrapper");
     champion__spells__wrapper.appendChild(summonerwrapper);
 
+    let summonerspellwrapper = document.createElement('div');
+    summonerspellwrapper.classList.add("summonerspell--wrapper");
+    summonerwrapper.appendChild(summonerspellwrapper);
+
     let ss1 = document.createElement("div");
     ss1.classList.add("SS1");
-    summonerwrapper.appendChild(ss1);
+    summonerspellwrapper.appendChild(ss1);
 
     let summonerspell1 = document.createElement("img");
     summonerspell1.setAttribute("class", "summoner_spell1");
@@ -221,7 +225,7 @@ function setData(dataArray) {
 
     let ss2 = document.createElement("div");
     ss2.classList.add("SS2");
-    summonerwrapper.appendChild(ss2);
+    summonerspellwrapper.appendChild(ss2);
 
     let summonerspell2 = document.createElement("img");
     summonerspell2.setAttribute("class", "summoner_spell2");
@@ -264,11 +268,11 @@ function setData(dataArray) {
 
     let gamemode = document.createElement("div");
     gamemode.classList.add("gameMode");
-    champion__spells__wrapper.appendChild(gamemode);
+    column1.appendChild(gamemode);
 
     let gamemode1 = document.createElement("p");
     gamemode1.classList.add("gamemode1");
-    gamemode1.innerHTML = "Ranked Flex"; // Gotta fix this, not sure how still
+    gamemode1.innerHTML = "Ranked Solo Duo"; // Gotta fix this, not sure how still
     gamemode.appendChild(gamemode1);
 
     let column2 = document.createElement("div");
@@ -280,50 +284,50 @@ function setData(dataArray) {
     column2.appendChild(items);
 
     let item1 = document.createElement("img");
-    item1.setAttribute("class", "item2");
+    item1.setAttribute("class", "item1");
     item1.setAttribute(
       "src",
-      `http://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${matchData.info.participants[playerNum].item0}.png`
+      checkItem(matchData.info.participants[playerNum].item0)
     );
     items.appendChild(item1);
 
     let item2 = document.createElement("img");
-    item2.setAttribute("class", "item1");
+    item2.setAttribute("class", "item2");
     item2.setAttribute(
       "src",
-      `http://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${matchData.info.participants[playerNum].item1}.png`
+      checkItem(matchData.info.participants[playerNum].item1)
     );
     items.appendChild(item2);
 
     let item3 = document.createElement("img");
-    item3.setAttribute("class", "item1");
+    item3.setAttribute("class", "item3");
     item3.setAttribute(
       "src",
-      `http://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${matchData.info.participants[playerNum].item2}.png`
+      checkItem(matchData.info.participants[playerNum].item2)
     );
     items.appendChild(item3);
 
     let item4 = document.createElement("img");
-    item4.setAttribute("class", "item1");
+    item4.setAttribute("class", "item4");
     item4.setAttribute(
       "src",
-      `http://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${matchData.info.participants[playerNum].item3}.png`
+      checkItem(matchData.info.participants[playerNum].item3)
     );
     items.appendChild(item4);
 
     let item5 = document.createElement("img");
-    item5.setAttribute("class", "item1");
+    item5.setAttribute("class", "item5");
     item5.setAttribute(
       "src",
-      `http://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${matchData.info.participants[playerNum].item4}.png`
+      checkItem(matchData.info.participants[playerNum].item4)
     );
     items.appendChild(item5);
 
     let item6 = document.createElement("img");
-    item6.setAttribute("class", "item1");
+    item6.setAttribute("class", "item6");
     item6.setAttribute(
       "src",
-      `http://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${matchData.info.participants[playerNum].item5}.png`
+      checkItem(matchData.info.participants[playerNum].item5)
     );
     items.appendChild(item6);
 
@@ -503,21 +507,11 @@ function setData(dataArray) {
   }
 }
 
-// First Rune = matchData.info.participants[playerNum].perks.styles[0].selections[0].perk  ex 8112 == electrocute
-// Second Rune = matchData.info.participants[playerNum].perks.styles[1].style  ex 8200 == sorcery
-// gameMode = matchData.info.gameMode
-// champion name = matchData.info.participants[playerNum].championName
-// assists = matchData.info.participants[playerNum].assists
-// kills = matchData.info.participants[playerNum].kills
-// deaths = matchData.info.participants[playerNum].deaths
-// items = matchData.info.participants[playerNum].item0
-// summoner1 id = matchData.info.participants[playerNum].summoner1Id
-// summoner2 id = matchData.info.participants[playerNum].summoner2Id
-// win/loss = matchData.info.participants[playerNum].win
-// time played in seconds = matchData.info.participants[playerNum].timePlayed
-
-// get all stats based off previous search
-// display stats
-
-// champ profile pic = http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${Zed}_0.jpg
-// summoner spell = https://raw.githubusercontent.com/InFinity54/LoL_DDragon/master/extras/summonerspells/${summoner_spell_id}.png
+function checkItem(itemID) { //just to check if an item slot is empty
+  if (itemID == 0) {
+    return "./assets/empty-img.png"
+  }
+  else {
+    return `http://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${itemID}.png`
+  }
+}
