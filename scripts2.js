@@ -196,7 +196,7 @@ function setData(dataArray) {
     champion__spells__wrapper.appendChild(champlogo);
 
     let logo = document.createElement("img");
-    logo.setAttribute("class", "logo");
+    logo.setAttribute("class", "logo img-curve");
     logo.setAttribute(
       "src",
       `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[playerNum].championName}_0.jpg`
@@ -284,7 +284,7 @@ function setData(dataArray) {
     column2.appendChild(items);
 
     let item1 = document.createElement("img");
-    item1.setAttribute("class", "item1");
+    item1.setAttribute("class", "item1 img-curve-small");
     item1.setAttribute(
       "src",
       checkItem(matchData.info.participants[playerNum].item0)
@@ -292,7 +292,7 @@ function setData(dataArray) {
     items.appendChild(item1);
 
     let item2 = document.createElement("img");
-    item2.setAttribute("class", "item2");
+    item2.setAttribute("class", "item2 img-curve-small");
     item2.setAttribute(
       "src",
       checkItem(matchData.info.participants[playerNum].item1)
@@ -300,7 +300,7 @@ function setData(dataArray) {
     items.appendChild(item2);
 
     let item3 = document.createElement("img");
-    item3.setAttribute("class", "item3");
+    item3.setAttribute("class", "item3 img-curve-small");
     item3.setAttribute(
       "src",
       checkItem(matchData.info.participants[playerNum].item2)
@@ -308,7 +308,7 @@ function setData(dataArray) {
     items.appendChild(item3);
 
     let item4 = document.createElement("img");
-    item4.setAttribute("class", "item4");
+    item4.setAttribute("class", "item4 img-curve-small");
     item4.setAttribute(
       "src",
       checkItem(matchData.info.participants[playerNum].item3)
@@ -316,7 +316,7 @@ function setData(dataArray) {
     items.appendChild(item4);
 
     let item5 = document.createElement("img");
-    item5.setAttribute("class", "item5");
+    item5.setAttribute("class", "item5 img-curve-small");
     item5.setAttribute(
       "src",
       checkItem(matchData.info.participants[playerNum].item4)
@@ -324,7 +324,7 @@ function setData(dataArray) {
     items.appendChild(item5);
 
     let item6 = document.createElement("img");
-    item6.setAttribute("class", "item6");
+    item6.setAttribute("class", "item6 img-curve-small");
     item6.setAttribute(
       "src",
       checkItem(matchData.info.participants[playerNum].item5)
@@ -366,7 +366,7 @@ function setData(dataArray) {
     team1wrapper.appendChild(teamnamewrapper1);
 
     let team1p1 = document.createElement("img");
-    team1p1.setAttribute("class", "team1p1");
+    team1p1.setAttribute("class", "team1p1 img-curve-small");
     team1p1.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[0].championName}_0.jpg`);
     teamnamewrapper1.appendChild(team1p1);
 
@@ -380,7 +380,7 @@ function setData(dataArray) {
     team1wrapper.appendChild(teamnamewrapper2);
 
     let team1p2 = document.createElement("img");
-    team1p2.setAttribute("class", "team1p2");
+    team1p2.setAttribute("class", "team1p2 img-curve-small");
     team1p2.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[1].championName}_0.jpg`);
     teamnamewrapper2.appendChild(team1p2);
 
@@ -394,7 +394,7 @@ function setData(dataArray) {
     team1wrapper.appendChild(teamnamewrapper3);
 
     let team1p3 = document.createElement("img");
-    team1p3.setAttribute("class", "team1p3");
+    team1p3.setAttribute("class", "team1p3 img-curve-small");
     team1p3.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[2].championName}_0.jpg`);
     teamnamewrapper3.appendChild(team1p3);
 
@@ -408,7 +408,7 @@ function setData(dataArray) {
     team1wrapper.appendChild(teamnamewrapper4);
 
     let team1p4 = document.createElement("img");
-    team1p4.setAttribute("class", "team1p4");
+    team1p4.setAttribute("class", "team1p4 img-curve-small");
     team1p4.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[3].championName}_0.jpg`);
     teamnamewrapper4.appendChild(team1p4);
 
@@ -422,7 +422,7 @@ function setData(dataArray) {
     team1wrapper.appendChild(teamnamewrapper5);
 
     let team1p5 = document.createElement("img");
-    team1p5.setAttribute("class", "team1p5");
+    team1p5.setAttribute("class", "team1p5 img-curve-small");
     team1p5.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[4].championName}_0.jpg`);
     teamnamewrapper5.appendChild(team1p5);
 
@@ -440,7 +440,7 @@ function setData(dataArray) {
     team2wrapper.appendChild(teamnamewrapper6);
 
     let team2p1 = document.createElement("img");
-    team2p1.setAttribute("class", "team2p1");
+    team2p1.setAttribute("class", "team2p1 img-curve-small");
     team2p1.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[5].championName}_0.jpg`);
     teamnamewrapper6.appendChild(team2p1);
 
@@ -454,7 +454,7 @@ function setData(dataArray) {
     team2wrapper.appendChild(teamnamewrapper7);
 
     let team2p2 = document.createElement("img");
-    team2p2.setAttribute("class", "team2p2");
+    team2p2.setAttribute("class", "team2p2 img-curve-small");
     team2p2.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[6].championName}_0.jpg`);
     teamnamewrapper7.appendChild(team2p2);
 
@@ -468,7 +468,7 @@ function setData(dataArray) {
     team2wrapper.appendChild(teamnamewrapper8);
 
     let team2p3 = document.createElement("img");
-    team2p3.setAttribute("class", "team2p3");
+    team2p3.setAttribute("class", "team2p3 img-curve-small");
     team2p3.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[7].championName}_0.jpg`);
     teamnamewrapper8.appendChild(team2p3);
 
@@ -482,7 +482,7 @@ function setData(dataArray) {
     team2wrapper.appendChild(teamnamewrapper9);
 
     let team2p4 = document.createElement("img");
-    team2p4.setAttribute("class", "team2p4");
+    team2p4.setAttribute("class", "team2p4 img-curve-small");
     team2p4.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[8].championName}_0.jpg`);
     teamnamewrapper9.appendChild(team2p4);
 
@@ -496,7 +496,7 @@ function setData(dataArray) {
     team2wrapper.appendChild(teamnamewrapper10);
 
     let team2p5 = document.createElement("img");
-    team2p5.setAttribute("class", "team2p5");
+    team2p5.setAttribute("class", "team2p5 img-curve-small");
     team2p5.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[9].championName}_0.jpg`);
     teamnamewrapper10.appendChild(team2p5);
 

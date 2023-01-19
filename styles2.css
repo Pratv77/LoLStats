@@ -134,6 +134,12 @@ nav {
   max-height: 80px;
 }
 
+.leftside {
+  background-color: #270c88;
+  border-radius: 20px;
+  padding: 20px;
+}
+
 /* 
 
   MATCH HISTORY 
@@ -244,6 +250,7 @@ nav {
 .teamname--wrapper10 {
   display: flex;
   position: sticky;
+  margin: 1px;
 }
 
 .name {
@@ -257,16 +264,21 @@ nav {
   margin-left: 20px;
 }
 
-.rune1,
 .rune2 {
-  width: 20px;
-  height: 20px;
+  width: 17px;
+  height: 17px;
+}
+
+.rune1 {
+  width: 23px;
+  height: 23px;
 }
 
 .runes--wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-left: 5px;
 }
 
 .container--holder {
@@ -276,4 +288,8 @@ nav {
 
 .img-curve {
   border-radius: 10px;
+}
+
+.img-curve-small {
+  border-radius: 6px;
 }
