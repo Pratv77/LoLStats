@@ -174,7 +174,6 @@ function setData(dataArray) {
     // Recreate match history container here, gonna be lengthy
 
     var matchHistory = document.getElementById("match-history");
-
     let container_holder = document.createElement("div");
     container_holder.classList.add("container--holder");
     matchHistory.appendChild(container_holder);
@@ -182,6 +181,12 @@ function setData(dataArray) {
     let container = document.createElement("div");
     container.classList.add("container");
     container_holder.appendChild(container);
+
+    if (matchData.info.participants[playerNum].win) {
+      container.classList.add("win");
+    } else {
+      container.classList.add("loss");
+    }
 
     let column1 = document.createElement("div");
     column1.classList.add("column1");
@@ -207,7 +212,7 @@ function setData(dataArray) {
     summonerwrapper.classList.add("summoner--wrapper");
     champion__spells__wrapper.appendChild(summonerwrapper);
 
-    let summonerspellwrapper = document.createElement('div');
+    let summonerspellwrapper = document.createElement("div");
     summonerspellwrapper.classList.add("summonerspell--wrapper");
     summonerwrapper.appendChild(summonerspellwrapper);
 
@@ -272,7 +277,40 @@ function setData(dataArray) {
 
     let gamemode1 = document.createElement("p");
     gamemode1.classList.add("gamemode1");
-    gamemode1.innerHTML = "Ranked Solo Duo"; // Gotta fix this, not sure how still
+    console.log(matchData.info)
+    if(matchData.info.queueId == 420) {
+      gamemode1.innerHTML = "Ranked Solo Duo";
+    }
+    else if(matchData.info.queueId == 440) {
+      gamemode1.innerHTML = "Ranked Flex"
+    }
+    else if(matchData.info.queueId == 450) {
+      gamemode1.innerHTML = "ARAM"
+    }
+    else if(matchData.info.queueId == 900) {
+      gamemode1.innerHTML = "URF Ultra Rapid Fire"
+    }
+    else if(matchData.info.queueId == 650) {
+      gamemode1.innerHTML = "ARAM"
+    }
+    else if(matchData.info.queueId == 400) {
+      gamemode1.innerHTML = "Normal"
+    }
+    else if(matchData.info.queueId == 0) {
+      gamemode1.innerHTML = "Custom"
+    }
+    else if(matchData.info.queueId == 0) {
+      gamemode1.innerHTML = "Custom"
+    }
+    else if(matchData.info.queueId == 78) {
+      gamemode1.innerHTML = "One for All"
+    }
+    else if(matchData.info.queueId == 830 || matchData.info.queueId == 840 || matchData.info.queueId == 850) {
+      gamemode1.innerHTML = "Co-op vs AI Bots"
+    }
+    else{
+      gamemode1.innerHTML = "Special Event"
+    }
     gamemode.appendChild(gamemode1);
 
     let column2 = document.createElement("div");
@@ -367,13 +405,16 @@ function setData(dataArray) {
 
     let team1p1 = document.createElement("img");
     team1p1.setAttribute("class", "team1p1 img-curve-small");
-    team1p1.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[0].championName}_0.jpg`);
+    team1p1.setAttribute(
+      "src",
+      `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[0].championName}_0.jpg`
+    );
     teamnamewrapper1.appendChild(team1p1);
 
     let team1name1 = document.createElement("h5");
     team1name1.classList.add("team1name1", "name");
     team1name1.innerHTML = matchData.info.participants[0].summonerName;
-    teamnamewrapper1.appendChild(team1name1)
+    teamnamewrapper1.appendChild(team1name1);
 
     let teamnamewrapper2 = document.createElement("div");
     teamnamewrapper2.classList.add("teamname--wrapper2");
@@ -381,13 +422,16 @@ function setData(dataArray) {
 
     let team1p2 = document.createElement("img");
     team1p2.setAttribute("class", "team1p2 img-curve-small");
-    team1p2.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[1].championName}_0.jpg`);
+    team1p2.setAttribute(
+      "src",
+      `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[1].championName}_0.jpg`
+    );
     teamnamewrapper2.appendChild(team1p2);
 
     let team1name2 = document.createElement("h5");
     team1name2.classList.add("team1name2", "name");
     team1name2.innerHTML = matchData.info.participants[1].summonerName;
-    teamnamewrapper2.appendChild(team1name2)
+    teamnamewrapper2.appendChild(team1name2);
 
     let teamnamewrapper3 = document.createElement("div");
     teamnamewrapper3.classList.add("teamname--wrapper3");
@@ -395,13 +439,16 @@ function setData(dataArray) {
 
     let team1p3 = document.createElement("img");
     team1p3.setAttribute("class", "team1p3 img-curve-small");
-    team1p3.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[2].championName}_0.jpg`);
+    team1p3.setAttribute(
+      "src",
+      `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[2].championName}_0.jpg`
+    );
     teamnamewrapper3.appendChild(team1p3);
 
     let team1name3 = document.createElement("h5");
     team1name3.classList.add("team1name3", "name");
     team1name3.innerHTML = matchData.info.participants[2].summonerName;
-    teamnamewrapper3.appendChild(team1name3)
+    teamnamewrapper3.appendChild(team1name3);
 
     let teamnamewrapper4 = document.createElement("div");
     teamnamewrapper4.classList.add("teamname--wrapper4");
@@ -409,13 +456,16 @@ function setData(dataArray) {
 
     let team1p4 = document.createElement("img");
     team1p4.setAttribute("class", "team1p4 img-curve-small");
-    team1p4.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[3].championName}_0.jpg`);
+    team1p4.setAttribute(
+      "src",
+      `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[3].championName}_0.jpg`
+    );
     teamnamewrapper4.appendChild(team1p4);
 
     let team1name4 = document.createElement("h5");
     team1name4.classList.add("team1name4", "name");
     team1name4.innerHTML = matchData.info.participants[3].summonerName;
-    teamnamewrapper4.appendChild(team1name4)
+    teamnamewrapper4.appendChild(team1name4);
 
     let teamnamewrapper5 = document.createElement("div");
     teamnamewrapper5.classList.add("teamname--wrapper5");
@@ -423,13 +473,16 @@ function setData(dataArray) {
 
     let team1p5 = document.createElement("img");
     team1p5.setAttribute("class", "team1p5 img-curve-small");
-    team1p5.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[4].championName}_0.jpg`);
+    team1p5.setAttribute(
+      "src",
+      `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[4].championName}_0.jpg`
+    );
     teamnamewrapper5.appendChild(team1p5);
 
     let team1name5 = document.createElement("h5");
     team1name5.classList.add("team1name5", "name");
     team1name5.innerHTML = matchData.info.participants[4].summonerName;
-    teamnamewrapper5.appendChild(team1name5)
+    teamnamewrapper5.appendChild(team1name5);
 
     let team2wrapper = document.createElement("div");
     team2wrapper.classList.add("team2--wrapper");
@@ -441,7 +494,10 @@ function setData(dataArray) {
 
     let team2p1 = document.createElement("img");
     team2p1.setAttribute("class", "team2p1 img-curve-small");
-    team2p1.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[5].championName}_0.jpg`);
+    team2p1.setAttribute(
+      "src",
+      `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[5].championName}_0.jpg`
+    );
     teamnamewrapper6.appendChild(team2p1);
 
     let team2name1 = document.createElement("h5");
@@ -455,7 +511,10 @@ function setData(dataArray) {
 
     let team2p2 = document.createElement("img");
     team2p2.setAttribute("class", "team2p2 img-curve-small");
-    team2p2.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[6].championName}_0.jpg`);
+    team2p2.setAttribute(
+      "src",
+      `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[6].championName}_0.jpg`
+    );
     teamnamewrapper7.appendChild(team2p2);
 
     let team2name2 = document.createElement("h5");
@@ -469,7 +528,10 @@ function setData(dataArray) {
 
     let team2p3 = document.createElement("img");
     team2p3.setAttribute("class", "team2p3 img-curve-small");
-    team2p3.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[7].championName}_0.jpg`);
+    team2p3.setAttribute(
+      "src",
+      `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[7].championName}_0.jpg`
+    );
     teamnamewrapper8.appendChild(team2p3);
 
     let team2name3 = document.createElement("h5");
@@ -483,7 +545,10 @@ function setData(dataArray) {
 
     let team2p4 = document.createElement("img");
     team2p4.setAttribute("class", "team2p4 img-curve-small");
-    team2p4.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[8].championName}_0.jpg`);
+    team2p4.setAttribute(
+      "src",
+      `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[8].championName}_0.jpg`
+    );
     teamnamewrapper9.appendChild(team2p4);
 
     let team2name4 = document.createElement("h5");
@@ -497,7 +562,10 @@ function setData(dataArray) {
 
     let team2p5 = document.createElement("img");
     team2p5.setAttribute("class", "team2p5 img-curve-small");
-    team2p5.setAttribute("src", `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[9].championName}_0.jpg`);
+    team2p5.setAttribute(
+      "src",
+      `http://ddragon.leagueoflegends.com/cdn/img/champion/tiles/${matchData.info.participants[9].championName}_0.jpg`
+    );
     teamnamewrapper10.appendChild(team2p5);
 
     let team2name5 = document.createElement("h5");
@@ -507,11 +575,11 @@ function setData(dataArray) {
   }
 }
 
-function checkItem(itemID) { //just to check if an item slot is empty
+function checkItem(itemID) {
+  //just to check if an item slot is empty
   if (itemID == 0) {
-    return "./assets/empty-img.png"
-  }
-  else {
-    return `http://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${itemID}.png`
+    return "./assets/empty-img.png";
+  } else {
+    return `http://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${itemID}.png`;
   }
 }
