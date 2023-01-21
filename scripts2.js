@@ -188,9 +188,13 @@ function setData(dataArray) {
       container.classList.add("loss");
     }
 
+    let column1column2wrapper = document.createElement("div");
+    column1column2wrapper.classList.add("column1column2wrapper");
+    container.appendChild(column1column2wrapper)
+
     let column1 = document.createElement("div");
     column1.classList.add("column1");
-    container.appendChild(column1);
+    column1column2wrapper.appendChild(column1);
 
     let champion__spells__wrapper = document.createElement("div");
     champion__spells__wrapper.classList.add("champion--spells-wrapper");
@@ -277,45 +281,39 @@ function setData(dataArray) {
 
     let gamemode1 = document.createElement("p");
     gamemode1.classList.add("gamemode1");
-    console.log(matchData.info)
-    if(matchData.info.queueId == 420) {
-      gamemode1.innerHTML = "Ranked Solo Duo";
-    }
-    else if(matchData.info.queueId == 440) {
-      gamemode1.innerHTML = "Ranked Flex"
-    }
-    else if(matchData.info.queueId == 450) {
-      gamemode1.innerHTML = "ARAM"
-    }
-    else if(matchData.info.queueId == 900) {
-      gamemode1.innerHTML = "URF Ultra Rapid Fire"
-    }
-    else if(matchData.info.queueId == 650) {
-      gamemode1.innerHTML = "ARAM"
-    }
-    else if(matchData.info.queueId == 400) {
-      gamemode1.innerHTML = "Normal"
-    }
-    else if(matchData.info.queueId == 0) {
-      gamemode1.innerHTML = "Custom"
-    }
-    else if(matchData.info.queueId == 0) {
-      gamemode1.innerHTML = "Custom"
-    }
-    else if(matchData.info.queueId == 78) {
-      gamemode1.innerHTML = "One for All"
-    }
-    else if(matchData.info.queueId == 830 || matchData.info.queueId == 840 || matchData.info.queueId == 850) {
-      gamemode1.innerHTML = "Co-op vs AI Bots"
-    }
-    else{
-      gamemode1.innerHTML = "Special Event"
+    console.log(matchData.info);
+    if (matchData.info.queueId == 420) {
+      gamemode1.innerHTML = "Ranked Solo";
+    } else if (matchData.info.queueId == 440) {
+      gamemode1.innerHTML = "Ranked Flex";
+    } else if (matchData.info.queueId == 450) {
+      gamemode1.innerHTML = "ARAM";
+    } else if (matchData.info.queueId == 900) {
+      gamemode1.innerHTML = "URF";
+    } else if (matchData.info.queueId == 650) {
+      gamemode1.innerHTML = "ARAM";
+    } else if (matchData.info.queueId == 400) {
+      gamemode1.innerHTML = "Normal";
+    } else if (matchData.info.queueId == 0) {
+      gamemode1.innerHTML = "Custom";
+    } else if (matchData.info.queueId == 0) {
+      gamemode1.innerHTML = "Custom";
+    } else if (matchData.info.queueId == 78) {
+      gamemode1.innerHTML = "One for All";
+    } else if (
+      matchData.info.queueId == 830 ||
+      matchData.info.queueId == 840 ||
+      matchData.info.queueId == 850
+    ) {
+      gamemode1.innerHTML = "Co-op vs AI Bots";
+    } else {
+      gamemode1.innerHTML = "Special Event";
     }
     gamemode.appendChild(gamemode1);
 
     let column2 = document.createElement("div");
     column2.classList.add("column2");
-    container.appendChild(column2);
+    column1column2wrapper.appendChild(column2);
 
     let items = document.createElement("div");
     items.classList.add("items");
