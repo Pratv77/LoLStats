@@ -5,26 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    />
     <script src="scripts.js"></script>
 
     <title>KeshStats</title>
   </head>
   <body>
-    <section id="landing-page">
-      <!-- Background Image -->
-      <figure>
-        <img class="bg-img" src="./assets/ahri-bg.png" alt="" />
-      </figure>
-      <!-- Header -->
-      <header class="header">
-        <h1 class="title">KeshStats</h1>
-        <!-- Search Bar -->
-        <form action="./index2.html" method="get" class="search-bar">
-          <input type="text" required placeholder="Search Summoner..." id="username" name="username" maxlength="45"/>
-          <button type="submit"><img src="./assets/search.png" /></button>
-        </form>
-        <!-- End of Header -->
-      </header>
-    </section>
+    <div class="container">
+      <h1 class="title">KeshStats</h1>
+
+      <div class="logo-container">
+        <a href="https://github.com/Pratv77" target="_blank">
+          <div class="logo">
+            <img src="./assets/image (1).png" alt="" />
+          </div>
+        </a>
+      </div>
+
+      <form action="./index2.html" method="get">
+        <div class="input-box">
+          <i class="uil uil-search"></i>
+          <input
+            type="text"
+            required
+            placeholder="Search Summoner..."
+            id="username"
+            name="username"
+          />
+          <button class="button">Search</button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      const button = document.querySelector(".button");
+      button.addEventListener("mousedown", () =>
+        button.classList.add("clicked")
+      );
+      button.addEventListener("mouseup", () =>
+        button.classList.remove("clicked")
+      );
+    </script>
   </body>
 </html>
