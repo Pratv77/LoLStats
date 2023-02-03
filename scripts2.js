@@ -10,7 +10,7 @@ let response;
 let playerPuuid;
 let arr = [];
 let runesMap = {
-  // Used mapping since I couldn't find a proper place to call each rune using the perk ID :(
+  // Used mapping since I couldn't find a proper place that has the rune icons to call each rune using the perk ID :(
   // secondary runes
   8100: `https://github.com/Pratv77/LoL_DDragon/blob/master/img/perk-images/Styles/7200_Domination.png?raw=true`,
   8000: `https://github.com/Pratv77/LoL_DDragon/blob/master/img/perk-images/Styles/7201_Precision.png?raw=true`,
