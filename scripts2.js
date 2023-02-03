@@ -228,7 +228,7 @@ function setData(dataArray) {
     summonerspell1.setAttribute("class", "summoner_spell1");
     summonerspell1.setAttribute(
       "src",
-      `https://raw.githubusercontent.com/InFinity54/LoL_DDragon/master/extras/summonerspells/${matchData.info.participants[playerNum].summoner1Id}.png`
+      `https://raw.githubusercontent.com/Pratv77/LoL_DDragon/master/extras/summonerspells/${matchData.info.participants[playerNum].summoner1Id}.png`
     );
     ss1.appendChild(summonerspell1);
 
@@ -240,7 +240,7 @@ function setData(dataArray) {
     summonerspell2.setAttribute("class", "summoner_spell2");
     summonerspell2.setAttribute(
       "src",
-      `https://raw.githubusercontent.com/InFinity54/LoL_DDragon/master/extras/summonerspells/${matchData.info.participants[playerNum].summoner2Id}.png`
+      `https://raw.githubusercontent.com/Pratv77/LoL_DDragon/master/extras/summonerspells/${matchData.info.participants[playerNum].summoner2Id}.png`
     );
     ss2.appendChild(summonerspell2);
 
