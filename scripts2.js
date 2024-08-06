@@ -1,4 +1,5 @@
-const apiKey = "RGAPI-f83dd452-a74d-4320-aa71-501b288e90d7";
+require('.env').config();
+const apiKey = process.env.API_KEY;
 
 // Get player's username from search
 const urlValue = window.location.search;
