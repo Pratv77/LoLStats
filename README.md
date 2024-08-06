@@ -1,4 +1,4 @@
-# KeshStats
+# LoLStats
 
 Welcome to LoLStats, an interactive web application dedicated to helping League of Legends players track and analyze their in-game performance. LoLStats utilizes the Riot API to provide a comprehensive collection of detailed match statistics and player data.
 
